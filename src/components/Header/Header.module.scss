@@ -1,0 +1,131 @@
+.root {
+  justify-content: center;
+  box-shadow: 0 1px 1px rgba(0,0,0,.2);
+  background-color: #fff;
+  flex: 0 0 50px;
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  white-space: nowrap;
+  height: 50px;
+}
+
+.inner {
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+
+  > nav {
+    display: flex;
+  }
+}
+
+.navItem {
+  > a {
+    text-decoration: none;
+    line-height: 50px;
+    padding: 0 10px;
+    color: #333;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: var(--grey-100);
+    }
+  }
+}
+
+.branding {
+  font-family: Ubuntu;
+  font-size: 2rem;
+  display: flex;
+  padding-right: 20px;
+    background-color: transparent !important;
+
+  &:before {
+    content: '';
+    background: url('//nicofinder.net/img/nicofinder-logo.svg') no-repeat;
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+  }
+}
+
+.subMenu {
+  position: relative;
+
+  &:hover {
+    .subMenuContainer {
+      pointer-events: initial;
+
+    }
+
+    .subMenuContent {
+      opacity: 1;
+      transform: skewX(0);
+    }
+  }
+}
+
+.subMenuContainer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  padding: 14px 10px 10px;
+  transform: translateX(-10px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.subMenuContent {
+  background-color: #fff;
+  box-shadow: 0 1px 8px rgba(0,0,0,.5);
+  padding: 12px 0;
+  opacity: 0;
+  transition: all .1s 0s ease-out;
+  transform: skewX(5deg) rotateX(30deg) scale(.95);
+  transform-origin: top;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    border-style: solid;
+    border-color: transparent;
+    position: absolute;
+    bottom: 100%;
+  }
+
+  &::before {
+    border-bottom-color: #d0d0d0;
+    border-width: 0 10px 10px 10px;
+    left: 78px;
+  }
+
+  &::after {
+    border-bottom-color: #fff;
+    border-width: 0 8px 10px 8px;
+    left: 80px;
+  }
+}
+
+.subItem {
+  > a {
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--grey-200);
+    }
+  }
+}
+
+.search {
+  display: flex;
+}
+
+.navBarBackground {
+    background-color: #fff;
+}

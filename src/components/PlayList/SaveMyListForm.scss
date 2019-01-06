@@ -1,0 +1,306 @@
+@import '../../assets/sass/_brand.scss';
+@import '../../assets/sass/_config.scss';
+
+@mixin materialFlatButton {
+  border: none;
+  background: none;
+  padding: 8px 16px;
+  color: #222;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+
+  &.is-primary {
+    color: $mainColor;
+  }
+
+  &.is-secondary {
+    color: #f44336;
+  }
+
+  &:disabled {
+    color: #b2b2b2;
+  }
+
+  &:hover {
+    background-color: #e8e8e8;
+  }
+}
+
+@mixin materialRaisedButton {
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  padding: 8px 16px;
+  color: #222;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+
+  &.is-primary {
+    color: #f2f2f2;
+    background-color: $mainColor;
+
+    &:hover {
+      background-color: $darkColor;
+    }
+
+    &:active {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) inset;
+    }
+  }
+}
+
+.saveQueueForm {
+  height: calc(100% - 32px);
+  user-select: auto;
+
+  input[type='text'] {
+    padding: 5px 8px;
+    outline: none;
+    border: 1px #d2d2d2 solid;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:hover {
+      border-color: #c0c0c0;
+    }
+
+    &:focus {
+      border-color: $mainColor;
+    }
+  }
+
+  input[type='checkbox'] {
+    display: none;
+
+    &:checked {
+      + span {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    + span {
+      position: relative;
+      padding-left: 24px;
+      line-height: 1.6rem;
+      display: block;
+
+      @include mdi(check, after);
+
+      &::before,
+      &::after {
+        width: 16px;
+        height: 16px;
+        border-radius: 2px;
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+      }
+
+      &::before {
+        content: '';
+        border: 2px #888 solid;
+      }
+
+      &::after {
+        text-align: center;
+        font-weight: bold;
+        background-color: $mainColor;
+        color: #fff;
+        font-size: 1.4rem;
+        opacity: 0;
+        transition: opacity 150ms;
+      }
+    }
+  }
+
+  &.is-register {
+    .saveQueueForm-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &.is-registered {
+    .saveQueueForm-progress {
+      flex: 0 0 64px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.3),
+          transparent
+        );
+        transform: translateY(100%);
+        animation: 0.2s 1.4s saveQueueFormProgressGradation forwards;
+      }
+    }
+
+    .saveQueueForm-link--resultGroup {
+      animation: 0.2s 1.8s saveQueueFormResultGroupMove forwards;
+    }
+  }
+}
+
+@keyframes saveQueueFormProgressGradation {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes saveQueueFormResultGroupMove {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.saveQueueForm-progress {
+  display: flex;
+  justify-content: center;
+  transition: flex 0.3s 1s;
+  position: relative;
+  flex: 0 0 8px;
+  overflow: hidden;
+
+  > progress {
+    width: 100%;
+    height: 100%;
+    -webkit-appearance: none;
+
+    &::-webkit-progress-bar {
+      background-color: #e2e2e2;
+    }
+
+    &::-webkit-progress-value {
+      background-color: $darkColor;
+      transition: width 1s linear;
+    }
+  }
+}
+
+.saveQueueForm-link--resultGroup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #e2e2e2;
+  line-height: 64px;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0;
+}
+
+.saveQueueForm-link--addMyList {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #c2c2c2;
+
+  &:hover {
+    color: $mainColor;
+  }
+}
+
+.saveQueueForm-progressLogList {
+  padding: 10px 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex: 1;
+  @include scrollbar;
+
+  > li {
+    padding: 5px 10px;
+    display: grid;
+    grid: auto / 16px auto auto;
+    grid-column-gap: 10px;
+
+    &::before {
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      font-size: 1.4rem;
+    }
+
+    &.icon-alertCircle::before {
+      color: #f44336;
+    }
+
+    &.icon-checkCircle::before {
+      color: #8bc34a;
+    }
+
+    > span {
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}
+
+.saveQueueForm-field {
+  padding: 20px;
+
+  > label {
+    display: block;
+
+    + label {
+      margin-top: 10px;
+    }
+
+    > span {
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+  }
+}
+
+.saveQueueForm-footer {
+  padding: 0 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.saveQueueForm-buttons {
+  > button {
+    font-size: 1.2rem;
+
+    + button {
+      margin-left: 10px;
+    }
+
+    &[type='reset'] {
+      @include materialFlatButton;
+    }
+
+    &[type='submit'] {
+      @include materialRaisedButton;
+    }
+  }
+}

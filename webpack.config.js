@@ -1,11 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlgin = require('clean-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = (env, args) => {
-  console.log(env, args)
+  // console.log(env, args, process.env.NODE_ENV)
 
   const mode = process.env.NODE_ENV || 'development'
   const PRODUCTION = mode === 'production'
@@ -13,58 +12,77 @@ module.exports = (env, args) => {
   return {
     mode,
     entry: {
-      main: [path.resolve(__dirname, './src/App.tsx')],
+      index: [path.resolve(__dirname, './src/index.ts')],
     },
     output: {
-      filename: PRODUCTION ? 'js/[name].js' : 'js/[hash].js',
+      filename: PRODUCTION ? '[hash].js' : '[name].js',
       path: path.resolve(__dirname, './dist'),
+      library: 'NicofinderCore',
+      libraryTarget: 'umd',
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json', '.css', '.scss'],
-    },
-    devtool: PRODUCTION ? false : 'inline-source-map',
-    optimization: {
-      splitChunks: {
-        name: 'vendor',
-        chunks: 'all',
+      alias: {
+        '~': path.join(__dirname, './src/'),
       },
     },
+    externals: [
+      {
+        react: 'react',
+        'react-dom': 'react-dom',
+        moment: 'moment',
+      },
+      /^@material-ui/,
+    ],
+    devtool: PRODUCTION ? false : 'inline-source-map',
     module: {
       rules: [
         { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
-        { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+
         {
-          test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  modules: true,
-                  importLoaders: 1,
-                  minimize: PRODUCTION,
-                  sourceMap: !PRODUCTION,
-                  localIdentName: '[folder]-[hash:base64:5]',
-                },
+          test: /\.module\.scss$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                sourceMap: !PRODUCTION,
+                localIdentName: '[folder]-[hash:base64:5]',
               },
-              {
-                loader: 'sass-loader',
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
+        },
+        {
+          test: /^(?!.*\.module).*\.scss$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                localIdentName: '[folder]-[hash:base64:5]',
               },
-            ],
-          }),
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
         },
       ],
     },
     plugins: [
       new CleanWebpackPlgin(['dist']),
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, './public/index.html'),
-      }),
-      new ExtractTextPlugin({
-        filename: PRODUCTION ? 'css/[hash].css' : 'css/[name].css',
-        allChunks: true,
-      }),
+      new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ja/),
+      // new BundleAnalyzerPlugin(),
     ],
   }
 }

@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 200px;
+  border: none;
+  border-bottom: 1px var(--grey-300) solid;
+  padding: 0 10px;
+  line-height: 3.2rem;
+  outline: none;
+  transition: all .2s ease-in;
+  background-color: transparent;
+
+  &:focus {
+    border-color: var(--primary-700);
+    box-shadow: 0 -1px 0 var(--primary-700) inset;
+  }
+}
+
+.inputContainer {
+  position: relative;
+}

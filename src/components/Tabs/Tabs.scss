@@ -1,0 +1,59 @@
+@import "../../assets/sass/brand";
+
+.c-tabs-container {
+  background-color: $mainColor;
+}
+
+.c-tabs-navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  text-align: center;
+  font-size: 1.3rem;
+
+  > li {
+    padding: 14px 0;
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    color: hsla(0, 0%, 100%, 0.6);
+    background-color: $mainColor;
+    transition: background .2s ease-out;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #fff;
+      transform: translate3d(0, 100%, 0);
+      transition: transform .2s ease-out;
+    }
+
+    &.is-active {
+      color: #fff;
+
+      &::before {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+}
+
+.c-tabs-contentContainer {
+  > div {
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+}

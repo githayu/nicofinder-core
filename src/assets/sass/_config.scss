@@ -1,0 +1,16 @@
+@import '~@mdi/font/scss/variables';
+
+$mdi-font-path: 'https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/2.4.85/fonts';
+
+@import '~@mdi/font/scss/functions';
+@import '~@mdi/font/scss/path';
+@import '~@mdi/font/scss/core';
+
+@mixin mdi($name, $pseudo: before) {
+  &::#{$pseudo} {
+    @extend .mdi-set;
+    content: mdi($name);
+
+    @content;
+  }
+}

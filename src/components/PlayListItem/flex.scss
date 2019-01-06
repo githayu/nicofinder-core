@@ -1,0 +1,46 @@
+.playListItem.is-flex {
+  &.selected {
+    > a {
+      background-color: #222;
+      color: #f2f2f2;
+    }
+  }
+
+  .thumbnail-container {
+    width: 80px;
+    height: 45px;
+    flex-basis: 80px;
+
+    &::after {
+      display: none;
+    }
+
+    > .thumbnail {
+      background-size: 80px;
+    }
+  }
+
+  .playListItem-link {
+    display: flex;
+    padding: 10px 20px;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  }
+
+  .playListItem-info {
+    padding: 0 10px;
+    box-sizing: border-box;
+    width: calc(100% - 80px);
+  }
+
+  .playListItem-title {
+    margin: 0;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,24 @@
+$contentWidth: 1000px;
+$baseColor: #fff;
+$accentColor: #03A9F4;
+$mainColor: #0288D1;
+$darkColor: #0277BD;
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #eee;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #333;
+
+    &:hover {
+      background-color: #555;
+    }
+  }
+}

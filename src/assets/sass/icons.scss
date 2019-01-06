@@ -1,0 +1,134 @@
+@import './_config.scss';
+
+.icon-alertCircle {
+  @include mdi(alert-circle);
+}
+.icon-checkCircle {
+  @include mdi(check-circle);
+}
+.icon-arrowLeft {
+  @include mdi(arrow-left);
+}
+.icon-sortAmountAsc {
+  @include mdi(sort-ascending);
+}
+.icon-sortAmountDesc {
+  @include mdi(sort-descending);
+}
+.icon-commentAlert {
+  @include mdi(comment-alert);
+}
+.icon-menu {
+  @include mdi(menu);
+}
+.icon-refresh {
+  @include mdi(refresh);
+}
+.icon-timeRestore {
+  @include mdi(restore-clock);
+}
+.icon-arrowRight {
+  @include mdi(arrow-right);
+}
+.icon-comment {
+  @include mdi(comment);
+}
+.icon-search {
+  @include mdi(magnify);
+}
+.icon-folder {
+  @include mdi(folder);
+}
+.icon-play {
+  @include mdi(play);
+}
+.icon-cloudUpload {
+  @include mdi(cloud-upload);
+}
+.icon-shuffle {
+  @include mdi(shuffle);
+}
+.icon-delete {
+  @include mdi(delete);
+}
+.icon-moreVert {
+  @include mdi(dots-vertical);
+}
+.icon-file {
+  @include mdi(file);
+}
+.icon-googleDrive {
+  @include mdi(google-drive);
+}
+.icon-viewList {
+  @include mdi(view-list);
+}
+.icon-module {
+  @include mdi(view-module);
+}
+.icon-trendingFlat {
+  @include mdi(trending-neutral);
+}
+.icon-trendingUp {
+  @include mdi(trending-up);
+}
+.icon-trendingDown {
+  @include mdi(trending-down);
+}
+.icon-account {
+  @include mdi(account);
+}
+
+.icon {
+  &.filter {
+    @include mdi(filter-variant);
+  }
+  &.pause {
+    @include mdi(pause);
+  }
+  &.skipPrev {
+    @include mdi(skip-previous);
+  }
+  &.skipNext {
+    @include mdi(skip-next);
+  }
+  &.viewList {
+    @include mdi(view-list);
+  }
+  &.viewModule {
+    @include mdi(view-module);
+  }
+  &.playListPlus {
+    @include mdi(playlist-plus);
+  }
+  &.menu {
+    @include mdi(menu);
+  }
+  &.flag {
+    @include mdi(flag);
+  }
+  &.tvAltPlay {
+    @include mdi(television-classic);
+  }
+  &.refreshSync {
+    @include mdi(refresh);
+  }
+  &.http {
+    @include mdi(link);
+  }
+  &.languageHTML5 {
+    @include mdi(language-html5);
+  }
+  &.copy {
+    @include mdi(content-copy);
+  }
+  &.commentAlert {
+    @include mdi(comment-alert);
+  }
+  &.formatSize {
+    @include mdi(format-size);
+  }
+  &.account {
+    @include mdi(account);
+  }
+}
